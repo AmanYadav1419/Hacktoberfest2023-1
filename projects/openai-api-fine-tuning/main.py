@@ -154,10 +154,7 @@ def main():
 
     response = requests.get(url, headers=headers)
     response_json = response.json()
-    fine_tuned_model = response_json.get('fine_tuned_model')
-
-    # Print the fine-tuned model
-    if fine_tuned_model:
+    if fine_tuned_model := response_json.get('fine_tuned_model'):
         print('\nFine-tuned model ready to use:', fine_tuned_model)
     else:
         print('No fine-tuned model available.')

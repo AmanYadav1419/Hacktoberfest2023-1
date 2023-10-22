@@ -10,7 +10,7 @@ def lambda_handler(event, context):
     destination_bucket = "testing-lambdaaa"
 
     # Temporarily download the zip file to /tmp directory
-    temp_file_path = '/tmp/' + os.path.basename(zip_file_key)
+    temp_file_path = f'/tmp/{os.path.basename(zip_file_key)}'
     s3.download_file(source_bucket, zip_file_key, temp_file_path)
 
     # Unzip the contents
