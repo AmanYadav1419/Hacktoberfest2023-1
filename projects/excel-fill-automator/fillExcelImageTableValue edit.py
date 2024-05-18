@@ -36,6 +36,7 @@ def createReport(cid, startPicture, endPicture, daysNumber):
 
     # Calculated number of cells width or height from cm into EMUs
     def cellh(x): return c2e((x * 49.77)/99)
+
     def cellw(x): return c2e((x * (18.65-1.71))/10)
 
     # Want to place image in row 5 (6 in excel), column 2 (C in excel)
@@ -99,11 +100,11 @@ def createReport(cid, startPicture, endPicture, daysNumber):
                     ws['D{}'.format(cellRow)].number_format = '#,##'
                     ws['F{}'.format(cellRow)].number_format = numbers.FORMAT_NUMBER
             except:
-                    ws['D{}'.format(cellRow)] = int(0)
-                    ws['F{}'.format(cellRow)]  = int(0)  
-                    ws['D{}'.format(cellRow)].number_format = '#,##'
-                    ws['F{}'.format(cellRow)].number_format = numbers.FORMAT_NUMBER
-        
+                ws['D{}'.format(cellRow)] = 0
+                ws['F{}'.format(cellRow)] = 0
+                ws['D{}'.format(cellRow)].number_format = '#,##'
+                ws['F{}'.format(cellRow)].number_format = numbers.FORMAT_NUMBER
+
 
         h, w = img.height, img.width
 
@@ -122,7 +123,7 @@ def createReport(cid, startPicture, endPicture, daysNumber):
         ws.add_image(imgTable)
         print('working for {} table'.format(i))
 
-    if endOfMonth == True:
+    if endOfMonth:
         try:
             if newNameFile:
                 newNameFile = newNameFile[2:]
@@ -138,7 +139,7 @@ def createReport(cid, startPicture, endPicture, daysNumber):
                 ws['F{}'.format(cellRow)]  = int(result2)/1000
                 ws['D{}'.format(cellRow)].number_format = numbers.FORMAT_NUMBER
                 ws['F{}'.format(cellRow)].number_format = numbers.FORMAT_NUMBER
-                
+
                 result1 = result[0][0]
                 result2 = result[0][1]
                 cellRow = 71
